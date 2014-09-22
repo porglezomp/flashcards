@@ -1,22 +1,32 @@
 <html>
-	<head>
-		<title>Flashcards</title>
-		<link rel="stylesheet" href="css/styles.css">
-	</head>
-	<body>
-		<div id="content">
-			<form action="#">
-                <input class="name" type="text">
-                <div class="item">
-                    <input type="text"> Identifies: <input type="checkbox" checked="true">
-                </div>
-                <div class="item">
-                    <input type="text"> Identifies: <input type="checkbox" checked="true">
-                </div>
-                <input type="submit">
-            </form>
-		</div>
-	</body>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/main.js"></script>
+  <head>
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+
+  <body>
+    <div id="content">
+      <div id="new-deck">
+        <form action="#">
+          <input class="name" type="text">
+          <div class="item">
+            <input type="text"> Identifies: <input type="checkbox" checked="true">
+          </div>
+          <div class="item">
+            <input type="text"> Identifies: <input type="checkbox" checked="true">
+          </div>
+          <input type="submit">
+        </form>
+      </div>
+      
+      <div id="deck-list">
+        
+      </div>
+
+      <a href="#" id="reset">Reset</a>
+    </div>
+  </body>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/main.js"></script>
 </html>
