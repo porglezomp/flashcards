@@ -1,18 +1,32 @@
 $(function() {
-    if(typeof(Storage) !== "undefined") {
-        $("form").submit(submitForm);
-    } else {
+    if (!Modernizr.localstorage) {
         $("#content").html("Your browser doesn't support the necessary features " 
             + "(you're probably using Internet Explorer). "
-            + "Please upgrade to a modern browser.");
+            + 'Please upgrade to a modern browser. <a href="http://whatbrowser.org/">Find one here.</a>');
+        return;
     }
 
-    $("#reset").click(function() {
-        if (confirm("Reset all the local storage?")) {
-            localStorage.clear();
+    mode = window.location.pathname.split("/").pop()
+    switch (mode) {
+    case "index.html":
+        $("form").submit(submitForm);
+
+        $("#reset").click(function() {
+            if (confirm("Reset all the local storage?")) {
+                localStorage.clear();
+            }
+        });
+        updateDeckList();
+        break;
+    case "view.html":
+        var deck = currentDeck();
+        $("#content").append("<h1>" + deck.name + "</h1>");
+        for (var i = 0, l = deck.card_template.attrs.length; i < l; i++) {
+            attr = deck.card_template.attrs[i];
+            $("#content").append(attr.name + " " + (attr.identifies ? "(Identifies)" : "") +  "<br>");
         }
-    });
-    updateDeckList();
+        break;
+    }
 });
 
 function submitForm() {
@@ -75,7 +89,29 @@ function updateDeckList() {
     $deck = $("#deck-list");
     $deck.html("");
     for (var i = 0, l = decks.length; i < l; i++) {
-        console.log(decks[i]);
-        $deck.append('<div class="deck-info">'+decks[i]+'</div>');
+        $deck.append('<div class="deck-info"><a class="view-deck" href="#">'+decks[i]+'</a></div>');
     }
+    $(".view-deck").click(function() {
+        viewDeck($(this).html());
+    });
+
+}
+
+function viewDeck(name) {
+    console.log(name);
+    var decks = getDecks();
+    if (decks.indexOf(name) >= 0) {
+        // If the name is an existing deck, handle it
+        localStorage["current_deck"] = name;
+        window.location.href = "view.html";
+    }
+}
+
+function currentDeck() {
+    var deck = localStorage["current_deck"]
+    if (!deck) {
+        return undefined;
+    }
+    deck = localStorage[deck];
+    return JSON.parse(deck);
 }
