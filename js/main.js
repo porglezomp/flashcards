@@ -12,66 +12,70 @@ $(function() {
             localStorage.clear();
         }
     });
-
-    function submitForm() {
-        var name = $("form").children(".name").val();
-        if (name === "undefined" || !name) {
-            // Fail!
-            console.log("That name is invalid!");
-            return;
-        }
-
-        var card_template = {
-            name: name,
-            attrs: []
-        }
-        $("form").children('.item').each(function() {
-            var attribute = {
-                name: $(this).children('[type=text]').val(),
-                identifies: $(this).children('[type=checkbox]:checked').length > 0
-            };
-            card_template.attrs.push(attribute);
-        });
-
-        if (localStorage[name]) {
-            console.log("That already exists!");
-        } else {
-            addDeck(newDeck(card_template));
-        }
-    }
-
-    function newDeck(template) {
-        var deck = {
-            name: template.name,
-            card_template: template,
-            cards: [],
-            progress: []
-        }
-        return deck;
-    }
-
-    function getDecks() {
-        var decks = localStorage["decks"]
-        if (decks === "undefined" || !decks) {
-            decks = []
-        } else {
-            decks = JSON.parse(localStorage["decks"]);
-        }
-        return decks;
-    }
-
-    function addDeck(deck) {
-        localStorage[deck.name] = JSON.stringify(deck);
-        var decks = getDecks();
-        decks.push(deck.name);
-        localStorage["decks"] = JSON.stringify(decks);
-        updateDecks();
-    }
-
-    function updateDecks() {
-        var decks = getDecks();
-        for (var i = 0, l = decks.length; i < l; i++) {
-            decks[i];
-        }
-    }
+    updateDeckList();
 });
+
+function submitForm() {
+    var name = $("form").children(".name").val();
+    if (name === "undefined" || !name) {
+        // Fail!
+        console.log("That name is invalid!");
+        return;
+    }
+
+    var card_template = {
+        name: name,
+        attrs: []
+    }
+    $("form").children('.item').each(function() {
+        var attribute = {
+            name: $(this).children('[type=text]').val(),
+            identifies: $(this).children('[type=checkbox]:checked').length > 0
+        };
+        card_template.attrs.push(attribute);
+    });
+
+    if (localStorage[name]) {
+        console.log("That already exists!");
+    } else {
+        addDeck(newDeck(card_template));
+    }
+}
+
+function newDeck(template) {
+    var deck = {
+        name: template.name,
+        card_template: template,
+        cards: [],
+        progress: []
+    }
+    return deck;
+}
+
+function getDecks() {
+    var decks = localStorage["decks"]
+    if (decks === "undefined" || !decks) {
+        decks = []
+    } else {
+        decks = JSON.parse(localStorage["decks"]);
+    }
+    return decks;
+}
+
+function addDeck(deck) {
+    localStorage[deck.name] = JSON.stringify(deck);
+    var decks = getDecks();
+    decks.push(deck.name);
+    localStorage["decks"] = JSON.stringify(decks);
+    updateDeckList();
+}
+
+function updateDeckList() {
+    var decks = getDecks();
+    $deck = $("#deck-list");
+    $deck.html("");
+    for (var i = 0, l = decks.length; i < l; i++) {
+        console.log(decks[i]);
+        $deck.append('<div class="deck-info">'+decks[i]+'</div>');
+    }
+}
