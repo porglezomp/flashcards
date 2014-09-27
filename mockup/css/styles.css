@@ -1,0 +1,119 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.red {
+    background-color: #e47;
+    color: #945;
+}
+
+.green {
+    background-color: #7e4;
+    color: #592;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+nav .container {
+    padding-top: 12px;
+}
+
+header#jumbotron {
+    width: 100%;
+    font-size: 32px;
+    padding: 20px;
+    height: 260px;
+    box-sizing: border-box;
+}
+
+#jumbotron ul {
+    float: right;
+    padding-right: 20px;
+    list-style: none;
+}
+
+ul#deck-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: 1s;
+}
+
+a:hover {
+    color: black;
+}
+
+#deck-list li {
+    margin-bottom: 8px;
+    height: 80px;
+}
+
+#deck-list li h1 {
+    color: #338;
+    margin-bottom: 0;
+}
+
+h1 span {
+    color: #999;
+    font-size: 80%;
+}
+
+.progress {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    font-size: 52px;
+    text-align: center;
+    box-sizing: border-box;
+    float: left;
+    margin-right: 16px;
+}
+
+nav {
+    border-top: 6px solid;
+    height: 64px;
+    font-size: 30px;
+}
+
+nav.green {
+    background-color: white;
+    border-color: #7e4;
+    color: #7e4;
+}
+
+nav.red {
+    background-color: white;
+    border-color: #e47;
+    color: #e47;
+}
+
+.perfect {
+    font-size: 42px;
+    padding-top: 4px;
+    transform : scale(1,1.1);
+    -webkit-transform:scale(1,1.1); /* Safari and Chrome */
+    -moz-transform:scale(1,1.1); /* Firefox */
+    -ms-transform:scale(1,1.1); /* IE 9+ */
+    -o-transform:scale(1,1.1); /* Opera */
+}
+
+#brand {
+    float: left;
+}
+
+#user {
+    float: right;
+    padding-top: 14px;
+    font-size: 20px;
+}
