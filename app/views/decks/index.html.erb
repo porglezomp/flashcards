@@ -1,24 +1,45 @@
-<h1>Listing decks</h1>
+<header id="jumbotron" class="green">
+  <div class="container">
+    <ul>
+      <li>
+        <%= link_to 'Create', new_deck_path %>  
+      </li>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <li><a href="#">
+        Browse
+      </a></li>
 
-  <tbody>
-    <% @decks.each do |deck| %>
-      <tr>
-        <td><%= @deck.name %></td>
-        <td><%= link_to 'Show', deck %></td>
-        <td><%= link_to 'Edit', edit_deck_path(deck) %></td>
-        <td><%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <li><a href="#">
+        Edit
+      </a></li>
+    </ul>
+  </div>
+</header>
 
-<br>
-
-<%= link_to 'New Deck', new_deck_path %>
+<section id="deck-list">
+  <div class="container">
+    <h1>Your Subscribed Decks</h1>
+    <ul>
+      <% @decks.each do |deck| %>
+        <li id="<%= deck.id %>">
+          <div class="progress green">
+            86
+            <div class="subtitle">
+              Mastery
+            </div>
+          </div>
+          <div class="description">
+            <h2><%= deck.name %></h2>
+            <div><%= deck.cards.size %> cards in this deck</div>
+            <% if deck.template %>
+            <div><%= deck.template.sides.size %>-sided cards</div>
+            <% end %>
+            <%= link_to 'Show', deck %>
+            <%= link_to 'Edit', edit_deck_path(deck) %>
+            <%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>
