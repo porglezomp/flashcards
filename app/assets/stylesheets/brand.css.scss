@@ -1,0 +1,57 @@
+// This file will be automatically included in application.css
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'brand-colors';
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.red {
+    background-color: $red;
+    color: $dark-red;
+}
+
+.green {
+    background-color: $green;
+    color: $dark-green;
+}
+
+.progress {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    font-size: 50px;
+    text-align: center;
+    .subtitle {
+        font-size: 16px;
+        margin-top: -4px;
+    }
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav {
+    &.red {
+        background-color: white;
+        border-color: $red;
+        color: $red;
+        a:hover {
+            color: $dark-red;
+        }
+    }
+    &.green {
+        background-color: white;
+        border-color: $green;
+        color: $green;
+        a:hover {
+            color: $dark-green;
+        }
+    }
+    a {
+        color: inherit;
+    }
+}

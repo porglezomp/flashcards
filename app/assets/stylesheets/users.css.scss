@@ -1,0 +1,18 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+nav {
+    border-top: 6px solid;
+    height: 64px;
+    font-size: 30px;
+    
+    h1#brand {
+        float: left;
+        font-size: 30px;
+        margin: 0;
+        font-weight: normal;
+    }
+    #user { float: right; }
+    .container { padding-top: 12px; }
+}
